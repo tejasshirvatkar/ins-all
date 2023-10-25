@@ -1,0 +1,33 @@
+package ins.practical.pkg8;
+
+import java.util.*;
+
+public class Diffie_Hellman {
+public static void main(String[] args) {
+Scanner sc=new Scanner(System.in);
+System.out.println(&quot;Enter Prime number(Modulo)q : &quot;);
+int q=sc.nextInt();
+System.out.println(&quot;Enter primitive root of &quot; + q);
+int g=sc.nextInt();
+System.out.println(&quot;Choose 1st secret no(Alice)&quot;);
+int a=sc.nextInt();
+System.out.println(&quot;Choose 2nd secret no(BOB)&quot;);
+int b=sc.nextInt();
+
+int A = (int)(Math.pow(g,a))%q;
+int B = (int)(Math.pow(g,b))%q;
+
+int S_A = (int)Math.pow(B,a)%q;
+int S_B =(int)Math.pow(A,b)%q;
+
+if(S_A == S_B)
+{
+System.out.println(&quot;Alice and Bob can communicate with each other!!!&quot;);
+System.out.println(&quot;They share a secret no = &quot;+ S_A );
+}
+else
+{
+System.out.println(&quot;Alice and Bob cannot communicate with each other!!!&quot;);
+}
+}
+}

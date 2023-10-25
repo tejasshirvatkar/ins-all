@@ -1,0 +1,53 @@
+package ins.practical.pkg6;
+
+import java.io.*;
+
+public class SimpleColumnarTechnique {
+public static void main(String[] args) throws IOException {
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+System.out.println(&quot;Enter your plain text : &quot;);
+String accept = br.readLine();
+System.out.println(&quot;Enter number of rows : &quot;);
+int r = Integer.parseInt(br.readLine());
+System.out.println(&quot;Enter number of columns : &quot;);
+int c = Integer.parseInt(br.readLine());
+int count = 0;
+char cont[][] = new char[r][c];
+for(int i=0;i&lt;r;i++)
+{
+for(int j=0;j&lt;c;j++)
+{
+if(count&gt;=accept.length())
+{
+cont[i][j] = &#39; &#39;;
+count++;
+}
+else
+{
+cont[i][j] = accept.charAt(count);
+count++;
+}
+}
+}
+System.out.println(&quot;\nEnter the order of columns you want to view them in : &quot;);
+int choice[] = new int[c];
+
+for(int k=0;k&lt;c;k++)
+{
+System.out.println(&quot;Choice &quot; + k + &quot; -&gt; &quot;);
+choice[k] = Integer.parseInt(br.readLine());
+}
+System.out.println(&quot;\nCipher text in matrix is : &quot;);
+String cipher = &quot;&quot;;
+for(int j=0;j&lt;c;j++)
+{
+int k = choice[j];
+for(int i=0;i&lt;r;i++)
+{
+cipher += cont[i][k];
+}
+}
+cipher = cipher.trim();
+System.out.println(cipher);
+}
+}

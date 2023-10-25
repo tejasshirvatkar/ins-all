@@ -1,0 +1,59 @@
+package ins.practical.pkg5;
+
+import java.io.*;
+
+public class VernamCipher {
+public static int getCharValue(char x)
+{
+int y = (int)&#39;a&#39;;
+return ((int)x-y);
+}
+
+public static char getNumberValue(int x)
+{
+int z = x + (int)&#39;a&#39;;
+return ((char)z);
+}
+
+public static void main(String[] args) throws IOException
+{
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+System.out.println(&quot;Enter your plain text : &quot;);
+String accept = br.readLine();
+System.out.println(&quot;\nEnter the key : &quot;);
+String key = br.readLine();
+int aval[] = new int[accept.length()];
+int pval[] = new int[key.length()];
+int initval[] = new int[key.length()];
+if(key.length()!=accept.length())
+{
+System.out.println(&quot;Invalid key&quot;);
+return;
+}
+for(int i=0;i&lt;accept.length();i++)
+
+{
+int k = getCharValue(accept.charAt(i));
+aval[i] = k;
+}
+for(int i=0;i&lt;key.length();i++)
+{
+int k = getCharValue(key.charAt(i));
+pval[i] = k;
+}
+for(int i=0;i&lt;key.length();i++)
+{
+initval[i] = aval[i] + pval[i];
+if(initval[i]&gt;25)
+initval[i]-=26;
+}
+System.out.println(&quot;\nCipher text is : &quot;);
+String cipher=&quot;&quot;;
+for(int i=0;i&lt;key.length();i++)
+{
+cipher += getNumberValue(initval[i]);
+}
+System.out.print(cipher);
+System.out.println(&quot;\n&quot;);
+}
+}

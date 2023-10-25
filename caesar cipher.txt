@@ -1,0 +1,54 @@
+package ins.practical.pkg1;
+
+import java.util.Scanner;
+
+public class CaesarCipher {
+public static final String ALPHABET=&quot;abcdefghijklmnopqrstuvwxyz&quot;;
+public static String encrypt(String plainText, int shiftKey)
+{
+plainText = plainText.toLowerCase();
+String cipherText = &quot;&quot;;
+for(int i=0;i&lt;plainText.length();i++)
+{
+int charPosition = ALPHABET.indexOf(plainText.charAt(i));
+int KeyVal = (shiftKey + charPosition)%26;
+char replaceVal = ALPHABET.charAt(KeyVal);
+cipherText += replaceVal;
+}
+return cipherText;
+}
+
+public static String decrypt(String cipherText, int shiftKey)
+{
+cipherText = cipherText.toLowerCase();
+String plainText = &quot;&quot;;
+for(int i=0;i&lt;cipherText.length();i++)
+{
+int charPosition = ALPHABET.indexOf(cipherText.charAt(i));
+int KeyVal = (charPosition - shiftKey)%26;
+if(KeyVal &lt; 0)
+{
+KeyVal = ALPHABET.length() + KeyVal;
+}
+char replaceVal = ALPHABET.charAt(KeyVal);
+
+plainText += replaceVal;
+}
+return plainText;
+}
+
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+System.out.println(&quot;Enter the string for encryption : &quot;);
+String message = new String();
+message = sc.next();
+System.out.println(&quot;Enter key : &quot;);
+int key = sc.nextByte();
+System.out.println(&quot;Plain Text is : &quot; + message);
+System.out.println(&quot;Encrypted Cipher Text is : &quot;);
+System.out.println(encrypt(message,key));
+System.out.println(&quot;Decrypted message is : &quot;);
+System.out.println(decrypt(encrypt(message,key),key));
+sc.close();
+}
+}
